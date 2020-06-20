@@ -4,14 +4,14 @@ $servername = "106.55.171.93";
 $username = "root";
 $password = "qwer1234,.";
 $dbname = "db1";
-
+$port = "3306";
 get_new_number();
 
 function get_new_number(){
     $number = 0;
     
     
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname, $port);
     // Check connection
     if ($conn->connect_error) {
         die("failure connection: " . $conn->connect_error);
