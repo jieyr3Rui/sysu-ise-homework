@@ -5,7 +5,8 @@ $username = 'root';
 $password = 'qwer1234,.';
 $dbname = 'db1';
 $port = "3306";
-get_new_number();
+
+get_new_number($servername, $username, $password, $dbname, $port);
 
 function get_new_number($servername, $username, $password, $dbname, $port){
     $number = 0;
