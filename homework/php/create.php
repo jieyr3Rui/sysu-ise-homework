@@ -17,7 +17,6 @@ function get_new_number($servername, $username, $password, $dbname, $port){
     if ($conn->connect_error) {
         die("failure connection: " . $conn->connect_error);
     } 
-    /*
     $sql = "SELECT COUNT(project_num) FROM project";
     $result = $conn->query($sql);
     if($result){
@@ -30,7 +29,6 @@ function get_new_number($servername, $username, $password, $dbname, $port){
     else{
         echo 'error';
     }
-    */
 }
 
 ?>
