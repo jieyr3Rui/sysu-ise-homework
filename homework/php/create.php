@@ -1,4 +1,3 @@
-<?php ob_start (); ?>
 <?php
 header("Content-type:text/html;charset=UTF-8");
 require "mysql.php";      //导入mysql.php访问数据库
@@ -19,7 +18,7 @@ function get_new_number(){
         echo 'num is' . strval($number);
     }
     else{
-        echo '<html><head><Script Language="JavaScript">alert("数据库查询错误");</Script></head></html>';
+        echo 'error';
     }
     
 }
