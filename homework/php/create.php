@@ -14,7 +14,7 @@ function get_new_number(){
         while($row = $result->fetch_assoc()) {
             $number = $row['COUNT(project_num)'];
         }
-        return number;
+        //return number;
         echo 'num is' . strval($number);
     }
     else{
