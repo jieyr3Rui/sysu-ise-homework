@@ -1,15 +1,24 @@
 <?php
 header("Content-type:text/html;charset=UTF-8");
-require "mysql.php";      //导入mysql.php访问数据库
+$servername = "localhost";
+$username = "root";
+$password = "qwer1234,.";
+$dbname = "db1";
 
 get_new_number();
 
 function get_new_number(){
     $number = 0;
-    $conn = new Mysql();
+    
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("failure connection: " . $conn->connect_error);
+    } 
+    
     $sql = "SELECT COUNT(project_num) FROM project";
-    $result = $conn->sql($sql);
-    echo 'debug';
+    $result = $conn->query($sql);
     if(($result) && (($result->num_rows > 0)){
         while($row = $result->fetch_assoc()) {
             $number = $row['COUNT(project_num)'];
