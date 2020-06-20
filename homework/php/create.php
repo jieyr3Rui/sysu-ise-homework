@@ -1,9 +1,9 @@
 <?php
 header("Content-type:text/html;charset=UTF-8");
 $servername = "106.55.171.93";
-$username = "root";
-$password = "qwer1234,.";
-$dbname = "db1";
+$username = 'root';
+$password = 'qwer1234,.';
+$dbname = 'db1';
 $port = "3306";
 get_new_number();
 
