@@ -10,6 +10,7 @@ function get_new_number(){
     $conn = new Mysql();
     $sql = "SELECT COUNT(project_num) FROM project";
     $result = $conn->sql($sql);
+    echo 'debug';
     if(($result) && (($result->num_rows > 0)){
         while($row = $result->fetch_assoc()) {
             $number = $row['COUNT(project_num)'];
