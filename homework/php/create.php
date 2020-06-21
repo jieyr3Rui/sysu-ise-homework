@@ -9,7 +9,7 @@ $port = "3306";
 $number = get_new_number($servername, $username, $password, $dbname, $port);
 $temp_str1 = '000000' . strval($number);
 $project_num = substr($temp_str1, strlen($temp_str1) - 6, 6);
-echo 'project_num = ' . $project_num;
+echo 'project_num = ' . $project_num . '\n';
 $course_num = 'ISE300'; //_POST['course_num'];
 $project_name = 'my ' . strval($number) . 'th project'; //_POST['project_name'];
 $description = 'description: this is my ' . strval($number) . 'th project'; //_POST['discription'];
@@ -41,6 +41,8 @@ $sql = 'INSERT INTO project (project_num, course_num, project_name, description,
         strval($score_number)  . ', ' . 
         $teacher_id            . ');';
 echo $sql;
+$result = $conn->query($sql);
+
 
 
 
