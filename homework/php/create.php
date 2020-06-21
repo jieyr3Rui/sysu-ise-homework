@@ -20,7 +20,6 @@ $submit_number = 0; //smallint(6)
 $submit_per = 0.0; //smallint(6)
 $score_number = 0; //smallint(6)
 $file = 'none';
-$teacher_id = 10007; //_POST['teacher_id'];
 
 
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
@@ -28,7 +27,7 @@ $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
     die("failure connection: " . $conn->connect_error);
 }
-$sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, file, teacher_id)
+$sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, file) 
         VALUES ("' .
         $project_num           . '", "' .
         $course_num            . '", "' .
@@ -40,8 +39,7 @@ $sql = 'INSERT INTO project (project_num, course_num, project_name, description,
         strval($submit_number) . '", "' .
         strval($submit_per)    . '", "' .
         strval($score_number)  . '", "' .
-        $file                  . '", "' .
-        $teacher_id            . '");';
+        $file                  . '");';
 
 if ($conn->query($sql) === TRUE) {
     echo "新记录插入成功";
