@@ -22,9 +22,13 @@ $score_number = 0; //smallint(6)
 $teacher_id = 10007; //_POST['teacher_id'];
 
 
-
-
-
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
+// Check connection
+if ($conn->connect_error) {
+    die("failure connection: " . $conn->connect_error);
+}
+$sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, teacher_id)
+        VALUES (' . $project_num . ', ' . $course_num . ', ' . $project_name . ', ' . $description . ', ' . $ddl . ', ' . $format . ', ' . $pload_time . suit_number, submit_per, score_number, teacher_id)'
 
 
 
