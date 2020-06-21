@@ -40,10 +40,12 @@ $sql = 'INSERT INTO project (project_num, course_num, project_name, description,
         strval($submit_per)    . ', ' . 
         strval($score_number)  . ', ' . 
         $teacher_id            . ');';
-echo $sql;
-$result = $conn->query($sql);
 
-
+if ($conn->query($sql) === TRUE) {
+    echo "新记录插入成功";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
 
 
 
