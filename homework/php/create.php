@@ -19,6 +19,7 @@ $upload_time = '2020-6-10'; //_POST['upload_time'];
 $submit_number = 0; //smallint(6)
 $submit_per = 0.0; //smallint(6)
 $score_number = 0; //smallint(6)
+$file = 'none';
 $teacher_id = 10007; //_POST['teacher_id'];
 
 
@@ -27,7 +28,7 @@ $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
     die("failure connection: " . $conn->connect_error);
 }
-$sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, teacher_id)
+$sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, file, teacher_id)
         VALUES (' .
         $project_num           . ', ' .
         $course_num            . ', ' .
@@ -39,6 +40,7 @@ $sql = 'INSERT INTO project (project_num, course_num, project_name, description,
         strval($submit_number) . ', ' . 
         strval($submit_per)    . ', ' . 
         strval($score_number)  . ', ' . 
+        $file                  . ', ' .
         $teacher_id            . ');';
 
 if ($conn->query($sql) === TRUE) {
