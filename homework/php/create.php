@@ -28,7 +28,19 @@ if ($conn->connect_error) {
     die("failure connection: " . $conn->connect_error);
 }
 $sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, teacher_id)
-        VALUES (' . $project_num . ', ' . $course_num . ', ' . $project_name . ', ' . $description . ', ' . $ddl . ', ' . $format . ', ' . $pload_time . suit_number, submit_per, score_number, teacher_id)'
+        VALUES (' .
+        $project_num          . ', ' .
+        $course_num           . ', ' .
+        $project_name         . ', ' . 
+        $description          . ', ' . 
+        $ddl                  . ', ' . 
+        $format               . ', ' . 
+        $upload_time          . ', ' . 
+        strval($sumit_number) . ', ' . 
+        strval($submit_per)   . ', ' . 
+        strval($score_number) . ', ' . 
+        $teacher_id           . ');';
+echo $sql;
 
 
 
