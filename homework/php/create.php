@@ -29,7 +29,7 @@ if ($conn->connect_error) {
     die("failure connection: " . $conn->connect_error);
 }
 $sql = 'INSERT INTO project (project_num, course_num, project_name, description, ddl, format, upload_time, submit_number, submit_per, score_number, file, teacher_id)
-        VALUES (' ".
+        VALUES ("' .
         $project_num           . '", "' .
         $course_num            . '", "' .
         $project_name          . '", "' .
