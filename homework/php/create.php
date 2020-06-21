@@ -6,12 +6,35 @@ $password = 'qwer1234,.';
 $dbname = 'db1';
 $port = "3306";
 
-get_new_number($servername, $username, $password, $dbname, $port);
+$number = get_new_number($servername, $username, $password, $dbname, $port);
+$temp_str1 = '000000' . strval($number);
+$project_num = substr($temp_str1, strlen($temp_str1) - 6, 6);
+echo 'project_num = ' . $project_num;
+$course_num = 'ISE300'; //_POST['course_num'];
+$project_name = 'my ' . strval($number) . 'th project'; //_POST['project_name'];
+$discription = 'description: this is my ' . strval($number) . 'th project'; //_POST['discription'];
+$ddl = '2020-6-21'; //_POST['ddl']'
+$format = 'excel'; //_POST['format'];
+$upload_time = '2020-6-10'; //_POST['upload_time'];
+$submit_number = 0; //smallint(6)
+$submit_per = 0.0; //smallint(6)
+$score_number = 0; //smallint(6)
+$teacher_id = 10007; //_POST['teacher_id'];
+
+
+
+
+
+
+
+
+
+
+
+
 
 function get_new_number($servername, $username, $password, $dbname, $port){
     $number = 0;
-    
-    
     $conn = new mysqli($servername, $username, $password, $dbname, $port);
     // Check connection
     if ($conn->connect_error) {
@@ -23,8 +46,9 @@ function get_new_number($servername, $username, $password, $dbname, $port){
         while($row = $result->fetch_assoc()) {
             $number = $row['COUNT(project_num)'];
         }
-        //return number;
-        echo 'num is' . strval($number);
+        // return number;
+        // echo 'num is' . strval($number);
+        return $number;
     }
     else{
         echo 'error';
