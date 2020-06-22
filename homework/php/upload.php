@@ -1,3 +1,6 @@
+<?php
+
+
 $file = $_POST['file'];
 $remark = $_POST['remark'];
 
@@ -23,3 +26,4 @@ function uploadHomework($project_num, $id)
     }
     $conn->close();
 }
+?>
