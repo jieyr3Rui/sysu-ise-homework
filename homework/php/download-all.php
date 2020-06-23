@@ -2,12 +2,12 @@
   // Create zip
 function createZip(){
     $zip = new ZipArchive();
-    $filename = "/download/myzipfile.zip";
+    $filename = "/web-file/download/myzipfile.zip";
     if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
       exit("cannot open <$filename>\n");
     }
-  
-    $dir = '/upload/';
+    $project_num = '000000';
+    $dir = "/web-file/project/{$project_num}/homework/";
     //文件夹操作
     if (is_dir($dir)){
   
@@ -40,7 +40,6 @@ function createZip(){
          closedir($dh);
        }
     }
-    //$zip->addFile($dir.$file); //addFile("filepath");
     $zip->close();
   }
 // Download Created Zip file
@@ -48,7 +47,7 @@ if(isset($_POST['download'])){
 echo "1";
 createZip();
 echo "2";
-$filename = "/download/myzipfile.zip";
+$filename = "/web-file/download/myzipfile.zip";
 
 if (file_exists($filename)) {
     echo "3";
