@@ -8,6 +8,7 @@ function createZip(){
     }
     $project_num = '000000'; //_POST['project_num'];
     $dir = "/web-file/project/'{$project_num}'/homework/";
+    echo $dir . '<br>';
     //文件夹操作
     if (is_dir($dir)){
   
