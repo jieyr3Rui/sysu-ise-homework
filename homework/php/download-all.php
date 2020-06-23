@@ -62,6 +62,6 @@ if (file_exists($filename)) {
     unlink($filename);
 
   }
-
+else{ echo "no file";}
 }
 ?>
