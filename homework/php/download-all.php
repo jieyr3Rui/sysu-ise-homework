@@ -6,10 +6,8 @@ function createZip(){
     if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
       exit("cannot open <$filename>\n");
     }
-    $project_num = '000000'; //_POST['project_num'];
-    //$dir = "/web-file/project/{$project_num}/homework/";
-    $dir = "/upload/";
-    echo $dir . '<br>';
+  
+    $dir = '/upload/';
     //文件夹操作
     if (is_dir($dir)){
   
