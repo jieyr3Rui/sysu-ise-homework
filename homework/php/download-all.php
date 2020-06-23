@@ -40,7 +40,7 @@ function createZip(){
          closedir($dh);
        }
     }
-    $zip->addFile($dir.$file); //addFile("filepath");
+    //$zip->addFile($dir.$file); //addFile("filepath");
     $zip->close();
   }
 // Download Created Zip file
