@@ -2,7 +2,7 @@
   // Create zip
 function createZip(){
     $zip = new ZipArchive();
-    $filename = "/web-file/download/myzipfile.zip";
+    $filename = "/download/myzipfile.zip";
     if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
       exit("cannot open <$filename>\n");
     }
@@ -50,7 +50,7 @@ if(isset($_POST['download'])){
 echo "1";
 createZip();
 echo "2";
-$filename = "/web-file/download/myzipfile.zip";
+$filename = "/download/myzipfile.zip";
 
 if (file_exists($filename)) {
     echo "3";
