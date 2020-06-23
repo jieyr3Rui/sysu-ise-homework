@@ -48,7 +48,7 @@ if(isset($_POST['download'])){
 echo "1";
 createZip();
 echo "2";
-$filename = "/download/myzipfile.zip";
+$filename = "/web-file/download/myzipfile.zip";
 
 if (file_exists($filename)) {
     echo "3";
