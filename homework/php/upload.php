@@ -40,7 +40,7 @@ else
         
         echo 'submit!' . '<br>';
 	$path = "/web-file/project/{$project_num}/homework/"; //规定的文件路径
-	if(!isdir($path)){ mkdir($path);}
+	if(!is_dir($path)){ mkdir($path);}
 	//移动文件到目录下并按规则重命名
 	$new_name = $path . $id . '.' . $extension;
 	move_uploaded_file($_FILES["file"]["tmp_name"], $path . $_FILES['file']['name']);       
