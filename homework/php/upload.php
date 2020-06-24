@@ -7,11 +7,11 @@ $dbname = 'db1';
 $port = "3306";
 
 $time = date("Y-m-d H:i:s");
-$id = '17308074';//_POST['id'];
-$project_num = '000001';//_POST['project_num'];
+$id = _POST['id'];
+$project_num = _POST['project_num'];
 $extension = end(explode(".", $_FILES["file"]["name"]));     // 获取文件后缀名
 $file = $path . $id . '.' . $extension;
-$remark = "remark: xxx";//_POST['remark'];
+$remark = _POST['remark'];
 
 if ($_FILES["file"]["error"] > 0)
 {
