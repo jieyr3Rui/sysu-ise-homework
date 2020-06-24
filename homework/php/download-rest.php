@@ -39,7 +39,7 @@ function createZip(){
 
 
 // Download Created Zip file
-if(isset($_POST['download'])){
+if(isset($_POST['download-rest'])){
 echo "1";
 createZip();
 echo "2";
