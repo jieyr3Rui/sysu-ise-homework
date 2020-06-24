@@ -3,7 +3,7 @@ header("Content-type:text/html;charset=UTF-8");
   // Create zip
 function createZip(){
     $zip = new ZipArchive();
-    $filename = "/download/myzipfile.zip";
+    $filename = "/web-file/download/myzipfile.zip";
     if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
       exit("cannot open <$filename>\n");
     }
@@ -17,9 +17,9 @@ function createZip(){
     $conn = mysqli_connect($servename, $username, $password, $dbname, $port);
     //检查连接是否成功
     if(!$conn){ 
-			die(“失败连接：”. mysqli_connect_error());
+	die(“失败连接：”. mysqli_connect_error());
     }
-    $sql = "SELECT id, file FROM homework WHERE project_num = '{$project_num}' AND download_flag = 0; ";
+    $sql = "SELECT id, file FROM homework WHERE project_num='{$project_num}' AND download_flag=0;";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -34,7 +34,10 @@ function createZip(){
     }
     
     $zip->close();
-  }
+}
+
+
+
 // Download Created Zip file
 if(isset($_POST['download'])){
 echo "1";
