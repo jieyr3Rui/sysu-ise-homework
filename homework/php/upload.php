@@ -7,13 +7,11 @@ $dbname = 'db1';
 $port = "3306";
 
 $time = date("Y-m-d H:i:s");
-$path = "/upload/";
-$id = '17363000';
-$name = "徐嘉鸿";
-$project_num = "aaa";
+$id = '17308074';//_POST['id'];
+$project_num = '000001';//_POST['project_num'];
 $extension = end(explode(".", $_FILES["file"]["name"]));     // 获取文件后缀名
 $file = $path . $id . '.' . $extension;
-$remark = "xxx";
+$remark = "remark: xxx";//_POST['remark'];
 
 if ($_FILES["file"]["error"] > 0)
 {
@@ -21,21 +19,36 @@ if ($_FILES["file"]["error"] > 0)
 }
 else
 {	
-	if (file_exists($path . $_FILES["file"]["name"]))
-		$res = unlink($path . $_FILES["file"]["name"]);
-
-	move_uploaded_file($_FILES["file"]["tmp_name"], $path . $_FILES['file']['name']);       
-	rename($path . $_FILES['file']['name'], $path . $id . '.' . $extension);
-    echo "上传成功！";
-    
-	// 更新数据库
 	$conn = mysqli_connect($servename,$username,$password,$dbname,$port);
 	//检查连接是否
-	if(!$conn)
+	if(!$conn){
 		die("Error: ". mysqli_connect_error());
-	$sql = "UPDATE homework SET file='{$path}',submit_time='{$time}',remark='{$remark}',download_flag='{0}' WHERE project_num='{$project_num}' and id='{$id}'";
-	if(!mysqli_query($conn,$sql)) 
-		echo "Error updating record: " .mysqli_error($conn); 
+	}
+	// 查询homework表中是否已有提交记录
+	$sql1 = "SELECT file FROM homework WHERE id='{$id}' AND project_num='{$project_num}';";
+	$result1 = $conn->query($sql1);
+        if ($result1->num_rows > 0) { // 已有上传记录，则删除原上传记录以及文件
+            echo 'there is a submit record.' . '<br>';
+            while($row = $result1->fetch_assoc()) {
+		echo "file: " . $row['file']. "<br>";
+                $res_del = unlink($row['file']);
+            }
+	    $sql2 = "DELETE FROM homework WHERE id='{$id} AND project_num='{$project_num}';";
+	    if(!mysqli_query($conn,$sql2)) 
+		echo "mysql error" .mysqli_error($conn);
+        } 
+        
+        echo 'submit!' . '<br>';
+	if(!isdir($path)){ mkdir($path);}
+	//移动文件到目录下并按规则重命名
+        $path = "web-file/project/{$project_num}/homework/"; //规定的文件路径
+	$new_name = $path . $id . '.' . $extension;
+	move_uploaded_file($_FILES["file"]["tmp_name"], $path . $_FILES['file']['name']);       
+	rename($path . $_FILES['file']['name'], $new_name);
+	$sql3 = "INSERT INTO homework (project_num, id, file, submit_time, remark, download_flag) VALUES 
+	             ('{$project_num}', '{$id}', '{$new_name}','{$time}', '{$remark}', 0);";
+        if(!mysqli_query($conn,$sql3)) 
+             echo "mysql error: " .mysqli_error($conn);
 
 }
 ?>
