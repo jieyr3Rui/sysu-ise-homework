@@ -36,14 +36,10 @@ function createZip(){
     $zip->close();
 }
 
-
-
-// Download Created Zip file
-if(isset($_POST['download-rest'])){
 echo "1";
 createZip();
 echo "2";
-$filename = "/download/myzipfile.zip";
+$filename = "/web-file/download/myzipfile.zip";
 
 if (file_exists($filename)) {
     echo "3";
@@ -55,8 +51,7 @@ if (file_exists($filename)) {
     readfile($filename);
     // delete file
     unlink($filename);
-
-  }
-
 }
+
+
 ?>
