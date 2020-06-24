@@ -1,7 +1,6 @@
 <?php
 header("Content-type:text/html;charset=UTF-8");
-  // Create zip
-function createZip(){
+
     $zip = new ZipArchive();
     $filename = "/web-file/download/myzipfile.zip";
     if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
@@ -39,12 +38,6 @@ function createZip(){
     if(!mysqli_query($conn,$sql)) 
          echo "mysql error: " .mysqli_error($conn);
 
-}
-
-echo "1";
-createZip();
-echo "2";
-$filename = "/web-file/download/myzipfile.zip";
 
 if (file_exists($filename)) {
     echo "3";
