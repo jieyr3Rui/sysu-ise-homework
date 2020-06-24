@@ -33,7 +33,7 @@ else
 		echo "file: " . $row['file']. "<br>";
                 $res_del = unlink($row['file']);
             }
-	    $sql2 = "DELETE FROM homework WHERE id='{$id} AND project_num='{$project_num}';";
+	    $sql2 = "DELETE FROM homework WHERE id='{$id}' AND project_num='{$project_num}';";
 	    if(!mysqli_query($conn,$sql2)) 
 		echo "mysql error" .mysqli_error($conn);
         } 
