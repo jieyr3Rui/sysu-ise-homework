@@ -47,6 +47,7 @@ else
 	rename($path . $_FILES['file']['name'], $new_name);
 	$sql3 = "INSERT INTO homework (project_num, id, file, submit_time, remark, download_flag) VALUES 
 	             ('{$project_num}', '{$id}', '{$new_name}','{$time}', '{$remark}', 0);";
+	echo $sql3 . 
         if(!mysqli_query($conn,$sql3)) 
              echo "mysql error: " .mysqli_error($conn);
         echo 'sucessful submit!';
