@@ -40,7 +40,7 @@ else
         
         echo 'submit!' . '<br>';
 	$path = "/web-file/project/{$project_num}/homework/"; //规定的文件路径
-	if(!is_dir($path)){ mkdir($path);}
+	mkdirs($path, $mode = 0777);
 	//移动文件到目录下并按规则重命名
 	$new_name = $path . $id . '.' . $extension;
 	move_uploaded_file($_FILES["file"]["tmp_name"], $path . $_FILES['file']['name']);       
@@ -50,5 +50,18 @@ else
         if(!mysqli_query($conn,$sql3)) 
              echo "mysql error: " .mysqli_error($conn);
         echo 'sucessful submit!';
+}
+
+
+function mkdirs($dir, $mode = 0777)
+
+{
+
+if (is_dir($dir) || @mkdir($dir, $mode)) return TRUE;
+
+if (!mkdirs(dirname($dir), $mode)) return FALSE;
+
+return @mkdir($dir, $mode);
+
 }
 ?>
