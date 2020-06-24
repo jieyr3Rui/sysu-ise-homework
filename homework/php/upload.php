@@ -39,9 +39,9 @@ else
         } 
         
         echo 'submit!' . '<br>';
+	$path = "/web-file/project/{$project_num}/homework/"; //规定的文件路径
 	if(!isdir($path)){ mkdir($path);}
 	//移动文件到目录下并按规则重命名
-        $path = "web-file/project/{$project_num}/homework/"; //规定的文件路径
 	$new_name = $path . $id . '.' . $extension;
 	move_uploaded_file($_FILES["file"]["tmp_name"], $path . $_FILES['file']['name']);       
 	rename($path . $_FILES['file']['name'], $new_name);
@@ -49,6 +49,6 @@ else
 	             ('{$project_num}', '{$id}', '{$new_name}','{$time}', '{$remark}', 0);";
         if(!mysqli_query($conn,$sql3)) 
              echo "mysql error: " .mysqli_error($conn);
-
+        echo 'sucessful submit!';
 }
 ?>
