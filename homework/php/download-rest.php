@@ -26,7 +26,7 @@ function createZip(){
       // output data of each row
       while($row = $result->fetch_assoc()) {
 	//$extension = end(explode(".", $row['file']));  
-        $zip->addFile($row["file"]); //addFile("filepath");
+        $zip->addFile($row["file"], basename($row["file"]));
         echo "file: " . $row["file"]. "<br>";
       }
     } else {
@@ -34,6 +34,11 @@ function createZip(){
     }
     
     $zip->close();
+    
+    $sql = "UPDATE homework SET download_flag=1 WHERE project_num='{$project_num}';";
+    if(!mysqli_query($conn,$sql)) 
+         echo "mysql error: " .mysqli_error($conn);
+
 }
 
 echo "1";
