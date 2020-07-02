@@ -12,7 +12,7 @@ header("Content-type:text/html;charset=UTF-8");
     $password = 'qwer1234,.';
     $dbname = 'db1';
     $port = "3306";
-    $project_num = '000001';
+    $project_num = $_POST['project_num'];
     $conn = mysqli_connect($servename, $username, $password, $dbname, $port);
     //检查连接是否成功
     if(!$conn){ 
