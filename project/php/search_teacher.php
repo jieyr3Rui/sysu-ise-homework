@@ -11,7 +11,7 @@ if ($conn->connect_error) {
     die("failure connection: " . $conn->connect_error);
 }
 
-$teacher_id = '10007';//_POST['teacher_id'];
+$teacher_id = $_POST['teacher_id'];
 
 $sql = "SELECT project_name FROM project WHERE course_num IN 
        (SELECT course_id FROM teach_list WHERE teacher_id = '{$teacher_id}');";
