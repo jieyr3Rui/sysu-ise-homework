@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>创建/修改作业项目</title>
+</head>
+<body>
+
+<form action="create.php" method="post" enctype="multipart/form-data">
+project_num: <input type="text" name="project_num" id="project_num"><br>
+course_num: <input type="text" name="course_num" id="course_num"><br>
+project_name: <input type="text" name="project_name" id="project_name"><br>
+description: <input type="text" name="description" id="description"><br>
+<label for="req_file">作业要求文件：</label> <input type="file" name="req_file" id="req_file"><br>
+ddl: <input type="text" name="ddl" id="ddl"><br>
+format: <input type="text" name="format" id="format"><br>
+<label for="ans_file">作业答案文件：</label> <input type="file" name="ans_file" id="ans_file"><br>
+answer_remark: <input type="text" name="answer_remark" id="answer_remark"><br>
+<input type="submit" name="submit" value="提交">
+</form>
+
+</body>
+</html>
