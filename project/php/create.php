@@ -7,7 +7,7 @@ $port = "3306";
 
 $upload_time = date("Y-m-d H:i:s");
 $answer_time = date("Y-m-d H:i:s");
-$project_num = $_POST['project_num'];
+//$project_num = $_POST['project_num'];
 $course_num = $_POST['course_num'];
 $project_name = $_POST['project_name'];
 $description = $_POST['description'];
@@ -25,11 +25,34 @@ if(!$conn)
 {
 	die("Error: ". mysqli_connect_error());
 }
+
 // 查询project表中是否已有答案记录
 $sql1 = "SELECT answer_file FROM project WHERE project_num='{$project_num}';";
 $result1 = $conn->query($sql1);
 $sql2 = "SELECT file FROM project WHERE project_num='{$project_num}';";
 $result2 = $conn->query($sql2);
+
+//自动生成作业项目号
+$sql11 = "SELECT MAX(project_num) FROM project WHERE course_num='{$course_num}';";
+$result3 = $conn->query($sql11);
+$arr = $result3->fetch_row();
+$last_project_num = $arr[0];
+if(empty($last_project_num))
+	$project_num = implode(array("$course_num","0001"));
+else
+{
+	$tmp1 = substr($last_project_num,0,6);
+	$tmp2 = substr($last_project_num,-2);
+	$new_num = (int)$tmp2 + 1;
+	if($new_num<10)
+		$project_num = implode(array("$tmp1","000","$new_num"));//000 + 1
+	elseif($new_num < 100)
+		$project_num = implode(array("$tmp1","00","$new_num"));//00 +12
+	elseif($new_num < 1000)
+		$project_num = implode(array("$tmp1","0","$new_num"));//0 + 120
+	else
+		$project_num = implode(array("$tmp1","$new_num"));//1200
+}
 
 if(empty($_FILES["ans_file"]["tmp_name"]) && empty($_FILES["req_file"]["tmp_name"])) //两个文件都没有上传
 {
@@ -90,7 +113,7 @@ elseif((!empty($_FILES["ans_file"]["tmp_name"])) && empty($_FILES["req_file"]["t
 	{ 	
 		while($row = $result1->fetch_assoc()) 
 		{
-			$row_del = unlink($row['file']);
+			$row_del = unlink($row['answer_file']);
 		}
 		move_uploaded_file($_FILES["ans_file"]["tmp_name"], $ans_path . $_FILES['ans_file']['name']);       
 		rename($ans_path . $_FILES['ans_file']['name'], $ans_name);
@@ -137,7 +160,7 @@ elseif(($_FILES["ans_file"]["size"] < 2147483648) && in_array($ans_extension, $a
 			//修改作业答案文件
 			while($row = $result1->fetch_assoc()) 
 			{
-				$row_del = unlink($row['file']);
+				$row_del = unlink($row['answer_file']);
 			}
 			move_uploaded_file($_FILES["ans_file"]["tmp_name"], $ans_path . $_FILES['ans_file']['name']);       
 			rename($ans_path . $_FILES['ans_file']['name'], $ans_name);
