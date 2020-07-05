@@ -6,7 +6,9 @@ header("Content-type:text/html;charset=UTF-8");
     if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
       exit("cannot open <$filename>\n");
     }
-
+    if (file_exists($filename)) {
+	echo "zip exist" . "<br>";
+    }
     $servername = "106.55.171.93";
     $username = 'root';
     $password = 'qwer1234,.';
@@ -39,7 +41,7 @@ header("Content-type:text/html;charset=UTF-8");
          echo "mysql error: " .mysqli_error($conn);
 
 
-if (file_exists($filename)) {
+
     echo "3";
     header('Content-Type: application/zip');
     header('Content-Disposition: attachment; filename="'.basename($filename).'"');
