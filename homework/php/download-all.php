@@ -41,7 +41,7 @@ header("Content-type:text/html;charset=UTF-8");
          echo "mysql error: " .mysqli_error($conn);
 
 
-
+if (file_exists($filename)) {
     echo "3";
     header('Content-Type: application/zip');
     header('Content-Disposition: attachment; filename="'.basename($filename).'"');
