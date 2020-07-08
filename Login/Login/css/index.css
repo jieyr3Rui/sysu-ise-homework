@@ -1,0 +1,55 @@
+/*重置样式*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr,
+acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub
+, sup, tt, var, b, u, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header,
+hgroup, menu, nav, output, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0
+}
+body {
+    font-family: "微软雅黑";
+    background: #f4f4f4;
+}
+
+/*header*/
+.header-line {
+    width: 100%;
+    height: 4px;
+    background: #0dbfdd;
+}
+
+/*content*/
+.content {
+    width: 28%;
+    margin: 70px auto 0;
+    text-align: center;
+}
+.content-logo {
+    width: 180px;
+    height: 180px;
+}
+.content-title {
+    margin: 0px 0 10px 0;
+    font-size: 3em;
+    color: #747474;
+    font-weight: normal;
+}
+
+.button {
+    background-color: #008CBA; /* Blue */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin:25px 0 0 10px;
+}
+
+.button:hover {
+    background-color: #007ba3;
+}

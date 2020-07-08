@@ -1,10 +1,14 @@
 <?php ob_start (); ?>
 <?php
 header("Content-type:text/html;charset=UTF-8");
+
+session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
 $autologin = isset($_POST['autologin']) ? 1 : 0;   //获取是否选择了自动登录
 $is_first = 0;//0表示第一次登录，1表示不是第一次登录
+$_SESSION['user_id']=$username;
+
 /*
  * 首先进行判空操作，通过后再进行数据库验证。
  * */
@@ -22,7 +26,7 @@ if (checkEmpty($username, $password)) {
         if($is_first == 0){
             header("location:../html/first_login.html");      //全部验证都通过之后跳转到首页
         }else{
-            header("location:../html/welcome-test.html"); 
+            header("location:../../../home_index/student/php/student_index.php"); 
         }
 
     }

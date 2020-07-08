@@ -4,10 +4,7 @@ header("Content-type:text/html;charset=UTF-8");
 $username = $_POST['username'];
 $password = $_POST['password'];
 $autologin = isset($_POST['autologin']) ? 1 : 0;   //获取是否选择了自动登录
-
 $is_first = 0;//0表示第一次登录，1表示不是第一次登录
-session_start();
-$_SESSION['user_id']=$username;
 /*
  * 首先进行判空操作，通过后再进行数据库验证。
  * */
@@ -23,17 +20,18 @@ if (checkEmpty($username, $password)) {
         }
         setcookie('username',$username,time()+3600,'/');
         if($is_first == 0){
-            header("location:../html/first_login_teach.html");      //全部验证都通过之后跳转到首页
+            header("location:../html/first_login.html");      //全部验证都通过之后跳转到首页
         }else{
-            header("location:../../../home_index/teacher/php/teacher_index.php"); 
+            header("location:../html/welcome-test.html"); 
         }
+
     }
 }
 //方法：判断是否为空
 function checkEmpty($username, $password)
 {
     if ($username == null || $password == null) {
-        echo '<html><head><Script Language="JavaScript">alert("用户名或密码为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url=../html/log-in-teacher.html\">";
+        echo '<html><head><Script Language="JavaScript">alert("用户名或密码为空");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url=../html/log-in.html\">";
     } else {
         return true;
     }
@@ -44,22 +42,22 @@ function checkUser($username, $password)
 {
     $link = mysqli_connect("106.55.171.93","root","qwer1234,.","db1");
     if(!$link){
-        echo '<html><head><Script Language="JavaScript">alert("数据库链接失败");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url=../html/log-in-teacher.html\">";
+        echo '<html><head><Script Language="JavaScript">alert("数据库链接失败");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url=../html/log-in.html\">";
         exit;
     }
     mysqli_set_charset("utf8");
 
     $str = md5($password);
-    $sql = "select * from teacher where id='{$username}' and password='{$str}';";
+    $sql = "select * from student where id='{$username}' and password='{$str}';";
     $res = mysqli_query($link,$sql);
     $row = mysqli_fetch_assoc($res);
-    
+
     if ($row) {
         global $is_first;
         $is_first = $row['isfirst'];
         return true;
     } else {
-        echo '<html><head><Script Language="JavaScript">alert("用户不存在");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url=../html/log-in-teacher.html\">";
+        echo '<html><head><Script Language="JavaScript">alert("用户名或者密码错误");</Script></head></html>' . "<meta http-equiv=\"refresh\" content=\"0;url=../html/log-in.html\">";
     }
     mysqli_close($link);
 }
